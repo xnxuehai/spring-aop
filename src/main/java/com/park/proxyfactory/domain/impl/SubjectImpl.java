@@ -1,7 +1,7 @@
-package com.park.domain.impl;
+package com.park.proxyfactory.domain.impl;
 
-import com.park.annotation.AaronCache;
-import com.park.domain.ISubject;
+import com.park.proxyfactory.annotation.AaronCache;
+import com.park.proxyfactory.domain.ISubject;
 
 /**
  * @author Aaron

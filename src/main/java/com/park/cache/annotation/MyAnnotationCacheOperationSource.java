@@ -10,6 +10,7 @@ import java.util.Set;
  * @date 2020/6/7 20:36
  */
 public class MyAnnotationCacheOperationSource extends AnnotationCacheOperationSource {
+
 	public MyAnnotationCacheOperationSource(Set<CacheAnnotationParser> annotationParsers) {
 		super(annotationParsers);
 	}

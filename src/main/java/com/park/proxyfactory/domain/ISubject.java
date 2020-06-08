@@ -1,4 +1,4 @@
-package com.park.domain;
+package com.park.proxyfactory.domain;
 
 /**
  * @author Aaron
