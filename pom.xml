@@ -11,8 +11,6 @@
     <properties>
         <spring.version>5.2.2.RELEASE</spring.version>
         <aspectjweaver.version>1.9.5</aspectjweaver.version>
-        <data-redis.version>2.3.0.RELEASE</data-redis.version>
-        <lettuce.version>5.3.0.RELEASE</lettuce.version>
         <fastjson.version>1.2.70</fastjson.version>
     </properties>
 
@@ -27,18 +25,6 @@
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
             <version>${aspectjweaver.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-redis</artifactId>
-            <version>${data-redis.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.lettuce</groupId>
-            <artifactId>lettuce-core</artifactId>
-            <version>${lettuce.version}</version>
         </dependency>
 
         <dependency>

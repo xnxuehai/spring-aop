@@ -4,9 +4,12 @@ import com.park.proxyfactory.domain.ISubject;
 import com.park.proxyfactory.domain.impl.SubjectImpl;
 import com.park.proxyfactory.advice.MyAdvice;
 import org.springframework.aop.Advisor;
+import org.springframework.aop.Pointcut;
+import org.springframework.aop.PointcutAdvisor;
 import org.springframework.aop.aspectj.AspectJExpressionPointcut;
 import org.springframework.aop.framework.ProxyFactory;
 import org.springframework.aop.support.DefaultPointcutAdvisor;
+import org.springframework.aop.support.NameMatchMethodPointcut;
 
 /**
  * 本代码实例将介绍 {@link ProxyFactory} 工厂
@@ -16,23 +19,20 @@ import org.springframework.aop.support.DefaultPointcutAdvisor;
  */
 public class ProxyFactoryDemo {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
+        // 创建一个代理类的工厂
+        ProxyFactory proxyFactory = new ProxyFactory(new SubjectImpl());
 
-		// 拦截上方法标有@AfterTransaction此注解的任意方法们
-		String pointcutExpression = "@annotation(com.park.proxyfactory.annotation.AaronCache)";
-		//声明一个aspectj切点,一张切面
-		AspectJExpressionPointcut cut = new AspectJExpressionPointcut();
-		// 设置切点表达式
-		cut.setExpression(pointcutExpression);
+        // 切点
+        NameMatchMethodPointcut nameMatchMethodPointcut = new NameMatchMethodPointcut();
+        nameMatchMethodPointcut.addMethodName("doService");
 
-		ProxyFactory proxyFactory = new ProxyFactory(new SubjectImpl());
+        Advisor advisor = new DefaultPointcutAdvisor(nameMatchMethodPointcut, new MyAdvice());
 
-		Advisor advisor = new DefaultPointcutAdvisor(cut, new MyAdvice());
+        proxyFactory.addAdvisor(advisor);
 
-		proxyFactory.addAdvisor(advisor);
+        ISubject subject = (ISubject) proxyFactory.getProxy();
 
-		ISubject subject = (ISubject) proxyFactory.getProxy();
-
-		subject.doService();
-	}
+        subject.doService();
+    }
 }
