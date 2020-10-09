@@ -23,7 +23,7 @@ public class JdkProxyDemo {
 
         instance.sendMessage("Aaron");
 
-
+        save(instance);
     }
 
     /**
