@@ -11,17 +11,17 @@ import java.lang.reflect.Proxy;
  * @author Aaron
  * @date 2020/10/1 16:24
  */
-public class JdkProxyDemo {
+public class Client {
 
     public static void main(String[] args) {
         // 真实类
-        RelInterface relInterface = new RelObject();
+        BusinessInterface relInterface = new SaveBusiness();
 
         // 代理类
-        JdkInvocationHandler jdkInvocationHandler = new JdkInvocationHandler();
-        RelInterface instance = jdkInvocationHandler.getInstance(relInterface);
+        JdkProxy jdkInvocationHandler = new JdkProxy();
+        BusinessInterface instance = jdkInvocationHandler.getInstance(relInterface);
 
-        instance.sendMessage("Aaron");
+        instance.login("Aaron", "123456");
 
         save(instance);
     }
@@ -31,7 +31,7 @@ public class JdkProxyDemo {
      *
      * @param instance
      */
-    private static void save(RelInterface instance) {
+    private static void save(BusinessInterface instance) {
         byte[] proxyClass = ProxyGenerator.generateProxyClass(instance.getClass()
                 .getSimpleName(), instance.getClass().getInterfaces());
 
