@@ -23,6 +23,15 @@ public class JdkProxyDemo {
 
         instance.sendMessage("Aaron");
 
+
+    }
+
+    /**
+     * 将代理对象输出
+     *
+     * @param instance
+     */
+    private static void save(RelInterface instance) {
         byte[] proxyClass = ProxyGenerator.generateProxyClass(instance.getClass()
                 .getSimpleName(), instance.getClass().getInterfaces());
 
